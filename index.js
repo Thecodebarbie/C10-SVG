@@ -30,7 +30,15 @@ const questions = [
 inquirer.prompt(questions)
     .then(data => {
         if (data.shape === 'circle') {
-
+            const circle = new Circle(data.text, data.textColor, data.shapeColor);
+            const svgString = circle.render();
+            fs.writeFile('./examples/circle.svg', svgString, err => {
+                if (err) {
+                    console.error('Error writing circle.svg:', err);
+                } else {
+                    console.log('Circle SVG file generated successfully.');
+                }
+            });
         }
         else if (data.shape === 'triangle') {
             const triangle = new Triangle(data.text, data.textColor, data.shapeColor)
