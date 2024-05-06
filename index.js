@@ -38,7 +38,7 @@ inquirer.prompt(questions)
                 } else {
                     console.log('Circle SVG file generated successfully.');
                 }
-            });
+            })
         }
         else if (data.shape === 'triangle') {
             const triangle = new Triangle(data.text, data.textColor, data.shapeColor)
@@ -46,8 +46,17 @@ inquirer.prompt(questions)
                 if(err) console.error(err)
                 console.log('success')
             })
+        } else if (data.shape === 'square'){
+            const square = new Square(data.text, data.textColor, data.shapeColor);
+            fs.writeFile('./examples/square.svg', square.render(), err => {
+                if (err) {
+                    console.error('Error writing square.svg:', err);
+                } else {
+                    console.log('Square SVG file generated successfully.');
+                }
+            })
         } else {
-
+            console.log('Invalid shape selected.');
         }
     })
 
